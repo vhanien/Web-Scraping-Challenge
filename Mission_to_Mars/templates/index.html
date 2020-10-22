@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Planet Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+
+        <!-- display mars data in card -->
+        <div class="row">
+            <!-- latest News Title and Paragraph Text -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Latest Mars News</h1>
+                        <h3 class="card-text">{{listings.news_title}}</h3>
+                        <p class="card-text">{{listings.news_body}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- JPL Mars Space Images - Featured Image -->
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Featured Mars Image</h1>
+                        <img src="{{listings.full_image_url}}" class="img-thumbnail" alt="Responsive image">
+                    </div>
+                </div>
+            </div>
+            <!-- Mars Facts -->
+            <div class="col-sm-6">
+                <h1 class="card-title">Mars Facts</h1>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Matrix Type</th>
+                            <th scope="col">Mars Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in listings.mars_facts %}
+                        <tr>
+                            <td>{{item.MatrixType}}</td>
+                            <td>{{item.Information}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Mars Hemispheres -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">Mars Hemispheres</h1>
+                        {% for item in listings.hemisphere_image_urls %}
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="{{item.img_url}}" class="img-thumbnail" alt="Responsive image">
+                                    <b>
+                                        <p class="card-text">{{item.title}}</p>
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
